@@ -5,6 +5,7 @@ import pyautogui
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
+from random import randint
 
 # Load the environment variables from .env file
 load_dotenv()
@@ -23,11 +24,12 @@ def join_zoom_meeting():
 
 # Function to say good morning in the Zoom meeting
 def good_morning_chat():
+    introduction_dialogue =  ["Good morning miss", "Hello!", "Good morning"] #list of introductions strings
     time.sleep(15)  # Wait for Zoom to fully load the meeting and chat box
     pyautogui.moveTo(800, 700)  # Move to chat box (adjust coordinates)
     pyautogui.click()  # Open the chat window
     time.sleep(2)
-    pyautogui.write('Good morning miss!', interval=0.01)  # Type the message
+    pyautogui.write(introduction_dialogue[randint(0,2)] , interval=0.01)  # Type the message
     pyautogui.press('enter')  # Press Enter to send the message
     print("Sent 'Good morning' message")
 
