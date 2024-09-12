@@ -19,7 +19,7 @@ def join_zoom_meeting():
     pyautogui.moveTo(900, 580)  # Adjust coordinates based on your screen
     pyautogui.click()  # Click the "Join" button
     print("Joined the Zoom meeting")
-    good_morning_chat()  # Call the chat function after joining
+    #good_morning_chat()  # Call the chat function after joining
 
 # Function to say good morning in the Zoom meeting
 def good_morning_chat():
@@ -30,6 +30,14 @@ def good_morning_chat():
     pyautogui.write('Good morning miss!', interval=0.01)  # Type the message
     pyautogui.press('enter')  # Press Enter to send the message
     print("Sent 'Good morning' message")
+
+def break_chat():
+    pyautogui.moveTo(800, 700)  # Move to chat box (adjust coordinates)
+    pyautogui.click()  # Open the chat window
+    time.sleep(2)
+    pyautogui.write('Back', interval=0.01)  # Type the message
+    pyautogui.press('enter')  # Press Enter to send the message
+    print("Sent 'Back' message")
 
 # Function to leave the Zoom meeting
 def leave_zoom_meeting():
@@ -44,6 +52,9 @@ def leave_zoom_meeting():
 def schedule_zoom():
     # Schedule joining at 11:35 AM every Thursday
     schedule.every().thursday.at("11:35").do(join_zoom_meeting)
+
+    break_time = (datetime.strptime("11:35", "%H:%M") + timedelta(hours=1, minutes=20)).strftime("%H:%M")
+    schedule.every().thursday.at(break_time).do(break_chat)
     
     # Schedule leaving at 2:25 PM (2 hours and 50 minutes after 11:35)
     leave_time = (datetime.strptime("11:35", "%H:%M") + timedelta(hours=2, minutes=50)).strftime("%H:%M")
