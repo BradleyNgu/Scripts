@@ -14,6 +14,9 @@ from google.cloud import speech
 # Load the environment variables from .env file
 load_dotenv()
 
+# Set GOOGLE_APPLICATION_CREDENTIALS for Google Cloud authentication
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+
 # Set OpenAI and Google Cloud API keys
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
